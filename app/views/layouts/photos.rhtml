@@ -2,17 +2,19 @@
   <head>
     <title><%= yield :title %>Saucy Tiger Studios</title>
     <link rel="stylesheet" href="/stylesheets/screen.css"/>
-    <!--[if lte IE 7]>
+    <!--[if IE]>
         <link rel="stylesheet" href="/stylesheets/ie.css"/>
     <![endif]-->
-    <script src="/javascripts/prototype.js"></script>
-    <script src="/javascripts/mouse_enter_and_leave.js"></script>
-    <script src="/javascripts/cookie.js"></script>
-    <script src="/javascripts/moo.fx.js"></script>
-    <script src="/javascripts/moo.fx.pack.js"></script>
-    <script src="/javascripts/moo.fx.transitions.js"></script>
-    <script src="/javascripts/moo.fx.utils.js"></script>
-    <script src="/javascripts/application.js"></script>
+    <![if !IE]>
+      <script src="/javascripts/prototype.js"></script>
+      <script src="/javascripts/mouse_enter_and_leave.js"></script>
+      <script src="/javascripts/cookie.js"></script>
+      <script src="/javascripts/moo.fx.js"></script>
+      <script src="/javascripts/moo.fx.pack.js"></script>
+      <script src="/javascripts/moo.fx.transitions.js"></script>
+      <script src="/javascripts/moo.fx.utils.js"></script>
+      <script src="/javascripts/application.js"></script>
+    <![endif]>
   </head>
   <body>
     <div id="container">
@@ -30,6 +32,7 @@
       <div id="main">
         <%= yield %>
       </div>
+      <a id="slideshow" href="#" title="Start / Stop Slideshow"></a>
       <%= render :partial => 'photos/navigation' %>
       <%= render :partial => 'photos/intro' %>
     </div>

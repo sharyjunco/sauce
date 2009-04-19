@@ -98,10 +98,12 @@ class Photo < ActiveRecord::Base
         File.rename(PHOTOS_ROOT + '/' + path + '.jpg',PHOTOS_ROOT + '/' + Photo.clean_filename(path) + '.jpg')
       end
       photo = Photo.find_by_path(Photo.clean_filename(path))
-      photo.photo_taggings.each(&:destroy)
-      photo.add_exif_data
-      photo.add_tags
-      photo.save
+      if photo
+        photo.photo_taggings.each(&:destroy)
+        photo.add_exif_data
+        photo.add_tags
+        photo.save
+      end
     end
     
     Photo.clear_cache
@@ -110,6 +112,14 @@ class Photo < ActiveRecord::Base
     PhotoCollection.update
     
     actions
+  end
+  
+  def featured?
+    featured.to_b
+  end
+  
+  def nsfw?
+    nsfw.to_b
   end
   
   def next

@@ -88,7 +88,7 @@ class PhotoCollection < ActiveRecord::Base
     list.each_with_index do |collection,i|
       return list[i - 1] if i > 0 && self.id == collection.id && list[i - 1]
     end
-    return nil
+    return list.last
   end
   
   def next
@@ -96,7 +96,7 @@ class PhotoCollection < ActiveRecord::Base
     list.each_with_index do |collection,i|
       return list[i + 1] if self.id == collection.id && list[i + 1]
     end
-    return nil
+    return list.first
   end
     
   def parent

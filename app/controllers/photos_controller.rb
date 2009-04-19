@@ -36,13 +36,15 @@ class PhotosController < ApplicationController
     render :action => 'photo_missing'
   end
   
-  def clear_all_cached_pages
-    page_list.each do |page|
+  def update
+    @page_list = page_list
+    @page_list.each do |page|
       path = page[:path]
       page.delete :path
       expire_page(url_for(page) + (path ? '/' + path.join('/') : ''))
     end
-    render :text => page_list.inspect
+    @actions = Photo.update
+    render :action => 'update', :layout => false
   end
   
   protected

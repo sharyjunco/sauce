@@ -1,0 +1,43 @@
+html,
+body,
+#container,
+#main {
+  width:100%;
+  height:100%;
+}
+
+#indicator {
+  display:none;
+}
+
+#collections,
+#collections ul,
+#collections li,
+#collections li a {
+  background-image:none;
+}
+
+#collections ul {
+
+}
+
+#collections ul ul {
+  margin:0;
+  padding:0;
+}
+
+#slideshow {
+  display:none;
+}
+
+.info td.right p {
+  margin:15px 15px 15px 15px;
+}
+
+#latest .item {
+  padding-bottom:50px;
+}
+
+#latest .item h3 {
+  font-size:13px;
+}

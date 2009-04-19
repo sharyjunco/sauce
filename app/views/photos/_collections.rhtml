@@ -1,11 +1,1 @@
-<% if collections.length > 0 %>
-  <ul class="collections">
-    <% collections.each do |collection| %>
-      <% active = @collection && (collection.path == @collection.path || @collection.parents.include?(collection)) %>
-      <li class="collection <%= active ? 'active' : 'inactive' %>">
-        <a href="<%= collection_url(collection) %>"><%= collection.name %></a>
-        <%= render :partial => 'photos/collections', :locals => {:collections => collection.children} %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<% if collections.length > 0 %><ul class="collections"><%- collections.each do |collection| %><%- active = @collection && (collection.path == @collection.path || @collection.parents.include?(collection)) %><li class="collection <%= active ? 'active' : 'inactive' %>"><a href="<%= collection_url(collection) %>"><%= collection.name %></a><%= render :partial => 'photos/collections', :locals => {:collections => collection.children} %></li><%- end %></ul><% end %>

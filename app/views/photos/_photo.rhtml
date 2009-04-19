@@ -5,7 +5,7 @@
       <% if @previous_photo %>
         <img src="<%= @previous_photo.src %>" class="previous_photo" style="display:none;"/>
         <% url = photo_url(@previous_photo) %>
-        <a href="<%= url[0,url.length - 1] %>"><span>&lsaquo;</span></a>
+        <a href="<%= url[0,url.length - 1] %>" title="<%= h(@previous_photo.title) %>"><span>&lsaquo;</span></a>
       <% end %>
     </td>
     <td class="photo_cell">
@@ -15,7 +15,7 @@
       <% if @next_photo %>
         <img src="<%= @next_photo.src %>" class="next_photo" style="display:none;"/>
         <% url = photo_url(@next_photo) %>
-        <a href="<%= url[0,url.length - 1] %>"><span>&rsaquo;</span></a>
+        <a href="<%= url[0,url.length - 1] %>" title="<%= h(@next_photo.title) %>"><span>&rsaquo;</span></a>
       <% end %>
     </td>
   </tr>
@@ -34,8 +34,8 @@
   <%= render :partial => 'photos/nsfw' %>
 <% end %>
 <% if @previous_collection %>
-  <a href="<%= collection_url(@previous_collection) %>" class="previous_collection"><span><%= @previous_collection.name %></span></a>
+  <a href="<%= collection_url(@previous_collection) %>" title="<%= h(@previous_collection.name) %>" class="previous_collection"><span><%= @previous_collection.name %></span></a>
 <% end %>
 <% if @next_collection %>
-  <a href="<%= collection_url(@next_collection) %>" class="next_collection"><span><%= @next_collection.name %></span></a>
+  <a href="<%= collection_url(@next_collection) %>" title="<%= h(@next_collection.name) %>" class="next_collection"><span><%= @next_collection.name %></span></a>
 <% end %>
