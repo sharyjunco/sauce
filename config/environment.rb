@@ -12,6 +12,8 @@ end
 
 EXIF_TOOL_LOCATION = RAILS_ENV == 'production' ? '~/Image-ExifTool-7.54/exiftool' : 'exiftool'
 
+require 'secret'
+
 require 'lib/mini_exiftool'
 require 'ftools'
 

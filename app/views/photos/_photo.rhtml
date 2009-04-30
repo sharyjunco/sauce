@@ -9,7 +9,7 @@
       <% end %>
     </td>
     <td class="photo_cell">
-      <div class="photo_padding"><img src="<%= @photo.src %>" alt="<%= @photo.alt %>" id="image"/></div>
+      <div class="photo_padding"><% if session[:admin] %><%= render :partial => 'photos/admin', :locals => {:photo => @photo} %><% end %><img src="<%= @photo.src %>" alt="<%= @photo.alt %>" id="image"/></div>
     </td>
     <td class="next">
       <% if @next_photo %>

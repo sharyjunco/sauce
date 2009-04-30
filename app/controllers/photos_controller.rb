@@ -1,6 +1,4 @@
 class PhotosController < ApplicationController
-  protect_from_forgery :only => [:create, :update, :destroy]
-  
   caches_page :index, :photo, :collection
 
   def index
@@ -35,30 +33,9 @@ class PhotosController < ApplicationController
   def no_collection_or_photo
     render :action => 'photo_missing'
   end
-  
-  def update
-    @page_list = page_list
-    @page_list.each do |page|
-      path = page[:path]
-      page.delete :path
-      expire_page(url_for(page) + (path ? '/' + path.join('/') : ''))
-    end
-    @actions = Photo.update
-    render :action => 'update', :layout => false
-  end
-  
+    
   protected
-  
-  def page_list
-    collection_pages = PhotoCollection.find(:all).collect do |collection|
-      {:action => :index, :controller => :photos, :path => collection.url.split('/')}
-    end
-    photo_pages = Photo.find(:all).collect do |photo|
-      {:action => :index, :controller => :photos, :path => photo.url.split('/')}
-    end
-    [{:action => :index, :controller => :photos}].concat(collection_pages).concat(photo_pages)
-  end
-  
+    
   def collection_index_partial(collection)
     collection_bits = collection.path.split('/')
     collection_bits[collection_bits.length - 1] = '_' + collection_bits[collection_bits.length - 1]

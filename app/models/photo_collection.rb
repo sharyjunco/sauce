@@ -1,5 +1,5 @@
 class PhotoCollection < ActiveRecord::Base
-  has_many :photos
+  has_many :photos, :order => 'position'
   after_create :set_photos_collection_ids, :set_name
   before_create :generate_url
   
@@ -81,6 +81,15 @@ class PhotoCollection < ActiveRecord::Base
     return @flattened if @flattened
     @flattened = top_level.collect{|collection| [collection] + collection.all_children}.flatten.reject{|collection| collection.photos.length == 0}
     @flattened
+  end
+  
+  def set_correct_positions
+    if photos.first
+      first_position = photos.first.position
+      photos.each do |photo|
+        photo.update_attribute(:position,photo.position - (first_position - 1))
+      end
+    end
   end
   
   def previous

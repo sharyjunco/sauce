@@ -1,0 +1,14 @@
+<div class="admin">
+	<div class="admin_contents">
+		<div class="links">
+			<a href="#" onclick="update_photo_database();">Update Photos</a> | <a href="#" onclick="clear_and_update_photo_database();">Clear &amp; Update Photos</a>
+		</div>
+		<span>Move to Position</span>
+		<select id="position_selector">
+			<% (1..photo.photo_collection.photos.length).each do |i| %>
+				<option value="<%= i %>" <% if i == photo.position.to_i %>selected="true"<% end %>><%= i %></option>
+			<% end %>
+		</select>
+		<input type="button" value="Move" onclick="move_photo_to_position(<%= photo.id %>,$('position_selector').value);">
+	</div>
+</div>

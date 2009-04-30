@@ -121,7 +121,7 @@ a {
             padding:9px;
             border:1px solid #ddd;
         }
-
+		
     .photo .previous,
     .photo .next {
         width:50%;
@@ -722,12 +722,14 @@ a {
             padding:9px;
             border:1px solid #ddd;
             -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
+			-moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.12);
         }
         
         #latest .item a:hover div.padding img {
             padding:9px;
             border:1px solid #aaa;
             -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
         }
         
 #empty {
@@ -739,17 +741,48 @@ a {
     margin-left:-175px;
     margin-top:-50px;
 }
-/*
-.fader {
-    -webkit-transition-property: opacity;
-    -webkit-transition-duration: 1s;
+
+/* Admin Area
+--------------*/
+.photo_padding {
+	position:relative;
 }
 
-.fade_out {
-    opacity:0;
+.admin {
+	text-align:right;
+	width:100%;
+	position:absolute;
+	top:0;
+	right:0;
+	z-index:4;
 }
 
-.fade_in {
-    opactiy:1;
+.admin .admin_contents {
+	background-color:#222;
+	margin:10px;
+	padding:5px;
+	opacity:0.9;
 }
-*/
+
+.admin .admin_contents span {
+	color:#ddd;
+	font-size:11px;
+}
+
+.admin .admin_contents .links {
+	float:left;
+	color:#fff;
+	font-size:9px;
+	padding:5px;
+}
+
+.admin .admin_contents .links a {
+	color:#fff;
+	text-decoration:none;
+	font-size:9px;
+	font-weight:bold;
+}
+
+.admin .admin_contents .links a:hover {
+	text-decoration:underline;
+}

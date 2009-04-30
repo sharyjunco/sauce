@@ -7,12 +7,12 @@
 class Photo < ActiveRecord::Base
   after_create :add_exif_data, :set_url, :set_src, :set_last_modified, :add_tags, :rename_source_file
   
-  acts_as_list :scope => :photo_collection
-  
   belongs_to :photo_collection
   has_many :photo_taggings, :dependent => :destroy
   has_many :photo_tags, :through => :photo_taggings
   
+  acts_as_list :scope => :photo_collection
+    
   def self.clear_cache
     @@all_paths_in_database = nil
     @@all_paths_in_filesystem = nil
@@ -111,6 +111,8 @@ class Photo < ActiveRecord::Base
     PhotoCollection.clear_cache
     PhotoCollection.update
     
+    PhotoCollection.find(:all).each(&:set_correct_positions)
+    
     actions
   end
   
@@ -153,7 +155,7 @@ class Photo < ActiveRecord::Base
   
   #returns the title, if the title is just a digit it becomes "collection.name #title" (Landscape #5)
   def name
-    (self.title.match(/^[\d]+$/) ? self.collecton.name + ' #' + self.title : self.title).gsub(/[\-_]+/,' ').split(/\s+/).each(&:capitalize!).join(' ')
+    (self.title.match(/^(IMG[\s\-\_])?[\d]+/i) ? "#{self.photo_collection.name} ##{self.position.to_s}" : self.title).gsub(/[\-_]+/,' ').split(/\s+/).each(&:capitalize!).join(' ')
   end
   
   def src
