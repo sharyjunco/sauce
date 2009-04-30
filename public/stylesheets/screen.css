@@ -376,7 +376,7 @@ a {
         font-weight:bold;
         font-size:13px;
         padding:0;
-        margin:70px 0 0 0;
+        margin:0 0 0 0;
     }
     
     #keys {
@@ -755,6 +755,7 @@ a {
 	top:0;
 	right:0;
 	z-index:4;
+	font-size:9px;
 }
 
 .admin .admin_contents {
@@ -766,20 +767,17 @@ a {
 
 .admin .admin_contents span {
 	color:#ddd;
-	font-size:11px;
 }
 
 .admin .admin_contents .links {
 	float:left;
 	color:#fff;
-	font-size:9px;
 	padding:5px;
 }
 
 .admin .admin_contents .links a {
 	color:#fff;
 	text-decoration:none;
-	font-size:9px;
 	font-weight:bold;
 }
 

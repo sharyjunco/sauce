@@ -884,23 +884,7 @@ $(document).observe('dom:loaded',function(){
         var keys_label_fader = new Fx.Opacity($('keys_label'),{
             duration: 500
         });
-        var up_key_fader = new Fx.Opacity($('up_key'),{
-            duration: 250
-        });
-        var down_key_fader = new Fx.Opacity($('down_key'),{
-            duration: 250
-        });
-        var left_key_fader = new Fx.Opacity($('left_key'),{
-            duration: 250
-        });
-        var right_key_fader = new Fx.Opacity($('right_key'),{
-            duration: 250
-        });
         keys_label_fader.hide();
-        up_key_fader.hide();
-        down_key_fader.hide();
-        left_key_fader.hide();
-        right_key_fader.hide();
         
         setTimeout(function(){
             next_photo_fader.toggle();
@@ -910,10 +894,6 @@ $(document).observe('dom:loaded',function(){
             
             //keys
             setTimeout(function(){keys_label_fader.toggle();},1000);
-            setTimeout(function(){right_key_fader.toggle();},1125);
-            setTimeout(function(){down_key_fader.toggle();},1250);
-            setTimeout(function(){left_key_fader.toggle();},1375);
-            setTimeout(function(){up_key_fader.toggle();},1500);
             
             //navigation info
             setTimeout(function(){navigation_label_fader.toggle();},3000);
@@ -951,18 +931,22 @@ $(document).observe('dom:loaded',function(){
 	};
 	
 	window.update_photo_database = function(){
-		new Ajax.Request('/admin/update',{
-			onComplete: function(){
-				alert('Database updated.');
-			}
-		});
+		if(confirm('Are you sure you want to update? This may take a minute.')){
+			new Ajax.Request('/admin/update',{
+				onComplete: function(){
+					alert('Database updated.');
+				}
+			});
+		}
 	};
 	
 	window.clear_and_update_photo_database = function(){
-		new Ajax.Request('/admin/clear',{
-			onComplete: function(){
-				alert('Database cleared and updated.');
-			}
-		});
+		if(confirm('Are you sure you want to clear and update? This may take a minute.')){
+			new Ajax.Request('/admin/clear',{
+				onComplete: function(){
+					alert('Database cleared and updated.');
+				}
+			});
+		}
 	};
 });

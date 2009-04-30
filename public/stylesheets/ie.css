@@ -2,19 +2,19 @@ html,
 body,
 #container,
 #main {
-  width:100%;
-  height:100%;
+	width:100%;
+	height:100%;
 }
 
 #indicator {
-  display:none;
+	display:none;
 }
 
 #collections,
 #collections ul,
 #collections li,
 #collections li a {
-  background-image:none;
+	background-image:none;
 }
 
 #collections ul {
@@ -22,22 +22,45 @@ body,
 }
 
 #collections ul ul {
-  margin:0;
-  padding:0;
+	margin:0;
+	padding:0;
 }
 
 #slideshow {
-  display:none;
+	display:none;
 }
 
 .info td.right p {
-  margin:15px 15px 15px 15px;
+	margin:15px 15px 15px 15px;
 }
 
 #latest .item {
-  padding-bottom:50px;
+	padding-bottom:50px;
 }
 
 #latest .item h3 {
-  font-size:13px;
+	font-size:13px;
+}
+
+.photo .photo_cell div.photo_padding {
+	padding:9px;
+	border:1px solid #ddd;
+}
+
+.photo .photo_cell div.photo_padding img {
+	border:none;
+}
+
+#latest .item a div.padding {
+	padding:9px;
+	border:1px solid #ddd;
+}
+
+#latest .item a:hover div.padding {
+	border:1px solid #aaa;
+}
+
+#latest .item a div.padding img,
+#latest .item a:hover div.padding img {
+	border:none;
 }

@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  include ApplicationHelper
   caches_page :index, :photo, :collection
 
   def index
@@ -24,6 +25,8 @@ class PhotosController < ApplicationController
       @photo = @collection.photos.first
       if @photo
         photo
+      elsif @collection.children.first && @collection.children.first.photos.first
+        redirect_to collection_url(@collection.children.sort_by(&:name).first)
       else
         render :action => :photo_missing
       end

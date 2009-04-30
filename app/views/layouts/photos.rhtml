@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/stylesheets/screen.css"/>
     <!--[if IE]>
         <link rel="stylesheet" href="/stylesheets/ie.css"/>
+				<script src="/javascripts/ie.js"></script>
     <![endif]-->
     <![if !IE]>
       <script src="/javascripts/prototype.js"></script>
@@ -35,6 +36,7 @@
       <a id="slideshow" href="#" title="Start / Stop Slideshow"></a>
       <%= render :partial => 'photos/navigation' %>
       <%= render :partial => 'photos/intro' %>
+	    <!--[if IE]><script>document.getElementById('collections').style.display = 'none';</script><![endif]-->
     </div>
   </body>
 </html>
