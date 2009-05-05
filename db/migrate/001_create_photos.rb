@@ -17,13 +17,17 @@ class CreatePhotos < ActiveRecord::Migration
       table.column :lens, :string
       table.column :caption, :text
     end
-    execute 'ALTER TABLE photos ENGINE = MyISAM'
-    execute 'CREATE FULLTEXT INDEX photos_fulltext_index ON photos(caption)'
+    begin
+      execute 'ALTER TABLE photos ENGINE = MyISAM'
+      execute 'CREATE FULLTEXT INDEX photos_fulltext_index ON photos(caption)'
+    rescue; end
   end
   
   def self.down
-    execute 'ALTER TABLE photos DROP INDEX photos_fulltext_index'
-    execute 'ALTER TABLE photos ENGINE = InnoDB'
+    begin
+      execute 'ALTER TABLE photos DROP INDEX photos_fulltext_index'
+      execute 'ALTER TABLE photos ENGINE = InnoDB'
+    rescue; end
     drop_table :photos
   end
 end
