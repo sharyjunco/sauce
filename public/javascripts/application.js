@@ -176,26 +176,26 @@ $(document).observe('dom:loaded',function(){
     indicator_fader.hide();
     var show_indicator_timeout;
     var show_indicator = function(timeout_length){
-				if(use_indicator){
-						if(show_indicator_timeout){
-		            clearTimeout(show_indicator_timeout);
-		        }
-		        show_indicator_timeout = setTimeout(function(){
-		            indicator_fader.custom(0,1);
-		            indicator_visible = true;
-		        },timeout_length || 750);
-				}
+        if(use_indicator){
+            if(show_indicator_timeout){
+                clearTimeout(show_indicator_timeout);
+            }
+            show_indicator_timeout = setTimeout(function(){
+                indicator_fader.custom(0,1);
+                indicator_visible = true;
+            },timeout_length || 750);
+        }
     };
     var hide_indicator = function(){
-				if(use_indicator){
-						if(show_indicator_timeout){
-		            clearTimeout(show_indicator_timeout);
-		        }
-		        if(!indicator_visible)
-		            return;
-		        indicator_fader.custom(1,0);
-		        indicator_visible = false;
-				}
+        if(use_indicator){
+            if(show_indicator_timeout){
+                clearTimeout(show_indicator_timeout);
+            }
+            if(!indicator_visible)
+                return;
+            indicator_fader.custom(1,0);
+            indicator_visible = false;
+        }
     };
     
     //image preloading
@@ -259,9 +259,9 @@ $(document).observe('dom:loaded',function(){
     
     //page transitions
     var page_transition_active = false;
-		var last_page = null;
+    var last_page = null;
     var go_to_page = function(page,proceed,proceed_2){
-				last_page = page;
+        last_page = page;
         if(nsfw_active)
             return;
         if(page_transition_active)
@@ -270,10 +270,10 @@ $(document).observe('dom:loaded',function(){
         new Ajax.Request(page,{
             evalScripts: false,
             onException: function(e){
-								if(console)
-                	console.log(arguments)
-								else
-									throw e;
+                if(console)
+                    console.log(arguments)
+                else
+                    throw e;
             },
             onComplete: function(request){
                 var tmp = new Element('div',{
@@ -329,7 +329,7 @@ $(document).observe('dom:loaded',function(){
             left: 0
         });
         var old_photo_fader = new Fx.Opacity(old_photo,{
-          duration: 450
+            duration: 450
         });
         var new_photo_fader = new Fx.Opacity(new_photo,{
           duration: 451,
@@ -381,31 +381,31 @@ $(document).observe('dom:loaded',function(){
     };
     
     var attach_box_shadow = function(){
-	    var photo = $(document.body).down('.photo .photo_cell img');
+        var photo = $(document.body).down('.photo .photo_cell img');
         if(Prototype.Browser.WebKit && photo){
             photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.03)';
             setTimeout(function(){photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.06)';},50);
             setTimeout(function(){photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.09)';},100);
             setTimeout(function(){photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.12)';},150);
         }else if(Prototype.Browser.Gecko && photo){
-	        photo.style['MozBoxShadow'] = '0px 0px 10px rgba(0, 0, 0, 0.03)';
+            photo.style['MozBoxShadow'] = '0px 0px 10px rgba(0, 0, 0, 0.03)';
             setTimeout(function(){photo.style['MozBoxShadow'] = '0px 0px 10px rgba(0, 0, 0, 0.06)';},50);
             setTimeout(function(){photo.style['MozBoxShadow'] = '0px 0px 10px rgba(0, 0, 0, 0.09)';},100);
             setTimeout(function(){photo.style['MozBoxShadow'] = '0px 0px 10px rgba(0, 0, 0, 0.12)';},150);
-		}
+        }
     };
     attach_box_shadow();
     
     var detach_box_shadow = function(){
-	    var photo = $(document.body).down('.photo .photo_cell img');
+        var photo = $(document.body).down('.photo .photo_cell img');
         if(Prototype.Browser.WebKit && photo){        
             photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.09)';
             setTimeout(function(){photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.06)';},50);
             setTimeout(function(){photo.style['-webkit-box-shadow'] = '0px 0px 10px rgba(0, 0, 0, 0.03)';},100);
             setTimeout(function(){photo.style['-webkit-box-shadow'] = null;},150);
         }else if(Prototype.Browser.Gecko && photo){
-			photo.style['MozBoxShadow'] = null;
-		}
+            photo.style['MozBoxShadow'] = null;
+        }
     };
     
     var go_to_next_page = function(){
@@ -917,36 +917,44 @@ $(document).observe('dom:loaded',function(){
         }
     });
 
-	//admin area
-	window.move_photo_to_position = function(id,position){
-		new Ajax.Request('/admin/insert_at',{
-			parameters: {
-				id: id,
-				position: position
-			},
-			onComplete: function(){
-				go_to_page(last_page);
-			}
-		});
-	};
-	
-	window.update_photo_database = function(){
-		if(confirm('Are you sure you want to update? This may take a minute.')){
-			new Ajax.Request('/admin/update',{
-				onComplete: function(){
-					alert('Database updated.');
-				}
-			});
-		}
-	};
-	
-	window.clear_and_update_photo_database = function(){
-		if(confirm('Are you sure you want to clear and update? This may take a minute.')){
-			new Ajax.Request('/admin/clear',{
-				onComplete: function(){
-					alert('Database cleared and updated.');
-				}
-			});
-		}
-	};
+    //admin area
+    window.move_photo_to_position = function(id,position){
+        new Ajax.Request('/admin/insert_at',{
+            parameters: {
+                id: id,
+                position: position
+            },
+            onComplete: function(){
+                go_to_page(last_page);
+            }
+        });
+    };
+ 
+    window.update_photo_database = function(){
+        if(confirm('Are you sure you want to update? This may take a minute.')){
+            new Ajax.Request('/admin/update',{
+                onComplete: function(){
+                    alert('Database updated.');
+                }
+            });
+        }
+    };
+ 
+    window.clear_and_update_photo_database = function(){
+        if(confirm('Are you sure you want to clear and update? This may take a minute.')){
+            new Ajax.Request('/admin/clear',{
+                onComplete: function(){
+                    alert('Database cleared and updated.');
+                }
+            });
+        }
+    };
+ 
+    window.expire_cached_pages = function(){
+        new Ajax.Request('/admin/expire',{
+            onComplete: function(){
+                alert('Cached pages have been expired.');
+            }
+        });
+    };
 });

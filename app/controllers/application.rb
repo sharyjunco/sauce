@@ -1,9 +1,7 @@
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
-class ApplicationController < ActionController::Base
-  before_filter :perform_login, :perform_logout
-  
+class ApplicationController < ActionController::Base  
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
@@ -14,20 +12,4 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
-  
-  protected
-  
-  def perform_login
-    if params.has_key?(:login) && params[:login] == ADMIN_SECRET
-      session[:admin] = true
-      logger.info 'Logged user in as admin.'
-    end
-  end
-  
-  def perform_logout
-    if params.has_key?(:logout)
-      session[:admin] = nil
-      logger.info 'Logged user out as admin.'
-    end
-  end
 end

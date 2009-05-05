@@ -1,8 +1,27 @@
 class AdminController < ApplicationController
-  before_filter :ensure_user_is_admin
+  before_filter :ensure_user_is_admin, :except => [:login,:logout]
+  
+  def login
+    if params[:secret] == ADMIN_SECRET
+      session[:admin] = true
+      render :text => 'Logged user in as admin.'
+    else
+      render :text => 'Invliad login.'
+    end
+  end
+  
+  def logout
+    session[:admin] = nil
+    render :text => 'Logged user out as admin.'
+  end
   
   def insert_at
     Photo.find(params[:id]).insert_at(params[:position])
+  end
+  
+  def expire
+    expire_all_cached_pages
+    render :text => 'Expired cached pages.'
   end
   
   def clear
@@ -16,7 +35,7 @@ class AdminController < ApplicationController
   def update
     expire_all_cached_pages
     @actions = Photo.update
-    render :action => 'update', :layout => false
+    render :action => 'photos/update', :layout => false
   end
   
   protected
